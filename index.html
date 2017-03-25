@@ -9,147 +9,304 @@
     <meta property="og:url" content="https://www.percentagevisualizer.com/">
     <meta name="description" property="og:description" content="A simple way to create powerful emoji based visualizations of percentages for statisticians, researchers, and students.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Percentage Visualizer</title>
+    <title>PercentageVisualizer.com</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style>
-    body {
-      padding-top: 1rem;
-    }
-    .pv-table {
-      border: none;
-      font-size: 1.2rem;
-      height: 768px;
-      margin-top: 1rem;
-      width: 768px;
-    }
-    .pv-table td {
-      padding: 0;
-      text-align: center;
-      vertical-align: middle;
-    }
-    .fade-out {
-      filter: alpha(opacity=25);
-      opacity: 0.25;
-    }
-    .gray-out {
-      filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
-      filter: grayscale(100%);
-      -moz-filter: grayscale(100%);
-      -ms-filter: grayscale(100%);
-      -o-filter: grayscale(100%);
-      filter: gray; /* IE6-9 */
-      -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
-      opacity: 0.5;
-      filter: alpha(opacity=50);
-    }
-    i {
-      border: 1px solid #eee;
-      font-size: 2rem;
-      font-style: normal;
-    }
-    ul.emoji-list * {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    ul.emoji-list li {
-      font-size: 2rem;
-      float: left;
-      display: inline-block;
-      padding: 2px;
-      margin: 4px;
-    }
-    img.emoji {
-      cursor: pointer;
-      height: 1.5rem;
-      width: 1.5rem;
-      margin: 0 .05rem 0 .1rem;
-      vertical-align: -0.1rem;
-    }
+      body {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .header,
+      .footer {
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+      .header {
+        padding-bottom: 1rem;
+        border-bottom: .05rem solid #e5e5e5;
+      }
+      /* Make the masthead heading the same height as the navigation */
+      .header h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 3rem;
+      }
+      .form-inline {
+        line-height: 2;
+      }
+      .footer {
+        padding-top: 1.5rem;
+        color: #777;
+        border-top: .05rem solid #e5e5e5;
+        font-size: .8rem;
+      }
+      /* Customize container */
+      @media (min-width: 56.25em) {
+        .container {
+          max-width: 54.25rem;
+        }
+      }
+      .container-narrow > hr {
+        margin: 2rem 0;
+      }
+      .pv-table {
+        border: none;
+        font-size: 1.2rem;
+        height: 50rem;
+        margin: auto;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        width: 50rem;
+      }
+      .pv-table td {
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .fade-out {
+        filter: alpha(opacity=25);
+        opacity: 0.25;
+      }
+      .gray-out {
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+        filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+      }
+      i {
+        border: 1px solid #eee;
+        font-size: 2rem;
+        font-style: normal;
+      }
+      ul.emoji-list * {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      ul.emoji-list li {
+        font-size: 2rem;
+        float: left;
+        display: inline-block;
+        padding: 2px;
+        margin: 4px;
+      }
+      img.emoji {
+        cursor: pointer;
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: 0 .05rem 0 .1rem;
+        vertical-align: -0.1rem;
+      }
+      /* Responsive: Portrait tablets and up - but not really supported */
+      @media screen and (min-width: 48em) {
+        .header,
+        .footer {
+          padding-right: 0;
+          padding-left: 0;
+        }
+        /* Space out the masthead */
+        .header {
+          margin-bottom: 2rem;
+        }
+        .jumbotron {
+          border-bottom: 0;
+        }
+      }
     </style>
   </head>
 
   <body>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://twemoji.maxcdn.com/2/twemoji.min.js?2.2.3"></script>
+    <script>
+    $(document).ready( function() {
+      $(".recalculate").change(function () {
+        // what percentage of the matrix is active?
+        var inline_form_percent = $("#inlineFormPercent").val();
 
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">Navbar</a>
+        // what is the size of the matrix / grid?
+        var inline_matrix_size = $("#inlineMatrixSize").val();
+        // var cell_padding = 49/inline_matrix_size - .25;
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+        // let's change our font-size CSS based on the inline_matrix_size
+        if(inline_matrix_size === '25') {
+          $(".pv-table").css({"font-size":"6em"});
+        }
+        else if(inline_matrix_size === '49') {
+          $(".pv-table").css({"font-size":"4.5em"});
+        }
+        else if(inline_matrix_size === '100') {
+          $(".pv-table").css({"font-size":"2.5em"});
+        }
+        else if(inline_matrix_size === '225') {
+          $(".pv-table").css({"font-size":"1.8em"});
+        }
+        else if(inline_matrix_size === '400') {
+          $(".pv-table").css({"font-size":"1.3em"});
+        }
+        else if(inline_matrix_size === '1024') {
+          $(".pv-table").css({"font-size":".9em"});
+        }
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
+        // do we order the matrix showing active first or active randomly distributed
+        var inline_matrix_order = $("#inlineMatrixOrder").val();
+        if (inline_matrix_order === 'R') {  // if we want to randomize which are active
+          var arr = []
+          while(arr.length < ((inline_form_percent * inline_matrix_size) / 100)){
+              var random_number = Math.round(Math.random() * (inline_matrix_size - 1));
+              if(arr.indexOf(random_number) > -1) continue;
+              arr[arr.length] = random_number;
+          }
+        }
+
+        // are the inactive entries gray or faded?
+        var inline_matrix_inactive = $("#inlineMatrixInactive").val();
+        if (inline_matrix_inactive === 'G') {
+          var alt_class = "gray-out";
+        }
+        else {
+          var alt_class = "fade-out";
+        }
+
+        var applied_class = '';
+        var table_content = '';
+        var total_rows = Math.sqrt(inline_matrix_size);
+        var row_cntr = total_rows;
+
+        // let's walk through each cell
+        for (var cell_cntr = 0; cell_cntr < inline_matrix_size; cell_cntr++) {
+          // if we want to show all the active entries first
+          if(inline_matrix_order === 'A') {
+            if(cell_cntr < ((inline_form_percent * inline_matrix_size) / 100)) {
+              applied_class = '';
+            }
+            else {
+              applied_class = ' class="' + alt_class + '"';
+            }
+          }
+          // or else we want to randomize where in the grid the active entries pop up
+          else if(inline_matrix_order === 'R') {
+            if(arr.indexOf(cell_cntr) > -1) {
+              applied_class = '';
+            }
+            else {
+              applied_class = ' class="' + alt_class + '"';
+            }
+          }
+
+          // if we're at the start of a new row
+          if(row_cntr === total_rows) {
+            table_content += '<tr id="pvr' + cell_cntr + '">';
+            table_content += '<td id="pvc' + cell_cntr + '"' + applied_class + '><span>&#x1f476;</span></td>';
+            row_cntr--;
+          }
+          else if(row_cntr === 1) {  // end of a row
+            table_content += '<td id="pvc' + cell_cntr + '"' + applied_class + '><span>&#x1f476;</span></td>';
+            table_content += '</tr>';
+            row_cntr = total_rows;
+          }
+          else {
+            table_content += '<td id="pvc' + cell_cntr + '"' + applied_class + '><span>&#x1f476;</span></td>';
+            row_cntr--;
+          }
+
+        }
+        $('#pvt').html(table_content);
+      });
+    });
+    </script>
 
     <div class="container">
-      <!-- Example row of columns -->
+
+      <div class="header clearfix">
+        <h3 class="text-muted">Percentage Visualizer</h3>
+      </div> <!-- /header -->
+
+      <p class="lead text-center">A simple percent visualization tool for statisticians, researchers, and students. <a href="#help">Help?</a></p>
+
+      <div>
+        <form class="form-inline">
+
+          Show me a &nbsp;
+          <label class="mr-sm-2 col-form-label-sm sr-only" for="inlineMatrixSize">matrix size</label>
+          <select class="recalculate custom-select mb-2 mr-sm-2 mb-sm-0 form-control-sm" id="inlineMatrixSize">
+            <option value="25">25 (5x5)</option>
+            <option value="49">49 (7x7)</option>
+            <option value="100" selected>100 (10x10)</option>
+            <option value="225">225 (15x15)</option>
+            <option value="400">400 (20x20)</option>
+            <option value="1024">1024 (32x32)</option>
+          </select>
+
+          matrix with &nbsp;
+
+          <input type="text" size="3" class="recalculate form-control mb-2 mr-sm-2 mb-sm-0 form-control-sm" id="inlineFormPercent" value="17">
+          <label class="mr-sm-2 col-form-label-sm sr-only" for="inlineFormPercent">%</label>
+
+          % of the cells active and &nbsp;
+
+          <select class="recalculate custom-select mb-2 mr-sm-2 mb-sm-0 form-control-sm" id="inlineMatrixOrder">
+            <option value="A" selected>Active First</option>
+            <option value="R">Random</option>
+          </select>
+          <label class="mr-sm-2 col-form-label-sm sr-only" for="inlineMatrixOrder">ordering</label>
+
+          cell ordering and &nbsp;
+
+          <select class="recalculate custom-select mb-2 mr-sm-2 mb-sm-0 form-control-sm" id="inlineMatrixInactive">
+            <option value="G" selected>Gray Out</option>
+            <option value="F">Fade Out</option>
+          </select>
+          <label class="mr-sm-2 col-form-label-sm sr-only" for="inlineMatrixInactive">inactive</label>
+
+          the inactive cells.
+
+        </form>
+      </div>
+
+      <div>
+        <table class="table pv-table" id="pvt" border="1" style="font-size: 2.5em;">
+          <tr id="pvr0"><td id="pvc0"><span>&#x1f476;</span></td><td id="pvc1"><span>&#x1f476;</span></td><td id="pvc2"><span>&#x1f476;</span></td><td id="pvc3"><span>&#x1f476;</span></td><td id="pvc4"><span>&#x1f476;</span></td><td id="pvc5" class="gray-out"><span>&#x1f476;</span></td><td id="pvc6" class="gray-out"><span>&#x1f476;</span></td><td id="pvc7" class="gray-out"><span>&#x1f476;</span></td><td id="pvc8" class="gray-out"><span>&#x1f476;</span></td><td id="pvc9" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr10"><td id="pvc10" class="gray-out"><span>&#x1f476;</span></td><td id="pvc11" class="gray-out"><span>&#x1f476;</span></td><td id="pvc12" class="gray-out"><span>&#x1f476;</span></td><td id="pvc13" class="gray-out"><span>&#x1f476;</span></td><td id="pvc14" class="gray-out"><span>&#x1f476;</span></td><td id="pvc15" class="gray-out"><span>&#x1f476;</span></td><td id="pvc16" class="gray-out"><span>&#x1f476;</span></td><td id="pvc17" class="gray-out"><span>&#x1f476;</span></td><td id="pvc18" class="gray-out"><span>&#x1f476;</span></td><td id="pvc19" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr20"><td id="pvc20" class="gray-out"><span>&#x1f476;</span></td><td id="pvc21" class="gray-out"><span>&#x1f476;</span></td><td id="pvc22" class="gray-out"><span>&#x1f476;</span></td><td id="pvc23" class="gray-out"><span>&#x1f476;</span></td><td id="pvc24" class="gray-out"><span>&#x1f476;</span></td><td id="pvc25" class="gray-out"><span>&#x1f476;</span></td><td id="pvc26" class="gray-out"><span>&#x1f476;</span></td><td id="pvc27" class="gray-out"><span>&#x1f476;</span></td><td id="pvc28" class="gray-out"><span>&#x1f476;</span></td><td id="pvc29" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr30"><td id="pvc30" class="gray-out"><span>&#x1f476;</span></td><td id="pvc31" class="gray-out"><span>&#x1f476;</span></td><td id="pvc32" class="gray-out"><span>&#x1f476;</span></td><td id="pvc33" class="gray-out"><span>&#x1f476;</span></td><td id="pvc34" class="gray-out"><span>&#x1f476;</span></td><td id="pvc35" class="gray-out"><span>&#x1f476;</span></td><td id="pvc36" class="gray-out"><span>&#x1f476;</span></td><td id="pvc37" class="gray-out"><span>&#x1f476;</span></td><td id="pvc38" class="gray-out"><span>&#x1f476;</span></td><td id="pvc39" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr40"><td id="pvc40" class="gray-out"><span>&#x1f476;</span></td><td id="pvc41" class="gray-out"><span>&#x1f476;</span></td><td id="pvc42" class="gray-out"><span>&#x1f476;</span></td><td id="pvc43" class="gray-out"><span>&#x1f476;</span></td><td id="pvc44" class="gray-out"><span>&#x1f476;</span></td><td id="pvc45" class="gray-out"><span>&#x1f476;</span></td><td id="pvc46" class="gray-out"><span>&#x1f476;</span></td><td id="pvc47" class="gray-out"><span>&#x1f476;</span></td><td id="pvc48" class="gray-out"><span>&#x1f476;</span></td><td id="pvc49" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr50"><td id="pvc50" class="gray-out"><span>&#x1f476;</span></td><td id="pvc51" class="gray-out"><span>&#x1f476;</span></td><td id="pvc52" class="gray-out"><span>&#x1f476;</span></td><td id="pvc53" class="gray-out"><span>&#x1f476;</span></td><td id="pvc54" class="gray-out"><span>&#x1f476;</span></td><td id="pvc55" class="gray-out"><span>&#x1f476;</span></td><td id="pvc56" class="gray-out"><span>&#x1f476;</span></td><td id="pvc57" class="gray-out"><span>&#x1f476;</span></td><td id="pvc58" class="gray-out"><span>&#x1f476;</span></td><td id="pvc59" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr60"><td id="pvc60" class="gray-out"><span>&#x1f476;</span></td><td id="pvc61" class="gray-out"><span>&#x1f476;</span></td><td id="pvc62" class="gray-out"><span>&#x1f476;</span></td><td id="pvc63" class="gray-out"><span>&#x1f476;</span></td><td id="pvc64" class="gray-out"><span>&#x1f476;</span></td><td id="pvc65" class="gray-out"><span>&#x1f476;</span></td><td id="pvc66" class="gray-out"><span>&#x1f476;</span></td><td id="pvc67" class="gray-out"><span>&#x1f476;</span></td><td id="pvc68" class="gray-out"><span>&#x1f476;</span></td><td id="pvc69" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr70"><td id="pvc70" class="gray-out"><span>&#x1f476;</span></td><td id="pvc71" class="gray-out"><span>&#x1f476;</span></td><td id="pvc72" class="gray-out"><span>&#x1f476;</span></td><td id="pvc73" class="gray-out"><span>&#x1f476;</span></td><td id="pvc74" class="gray-out"><span>&#x1f476;</span></td><td id="pvc75" class="gray-out"><span>&#x1f476;</span></td><td id="pvc76" class="gray-out"><span>&#x1f476;</span></td><td id="pvc77" class="gray-out"><span>&#x1f476;</span></td><td id="pvc78" class="gray-out"><span>&#x1f476;</span></td><td id="pvc79" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr80"><td id="pvc80" class="gray-out"><span>&#x1f476;</span></td><td id="pvc81" class="gray-out"><span>&#x1f476;</span></td><td id="pvc82" class="gray-out"><span>&#x1f476;</span></td><td id="pvc83" class="gray-out"><span>&#x1f476;</span></td><td id="pvc84" class="gray-out"><span>&#x1f476;</span></td><td id="pvc85" class="gray-out"><span>&#x1f476;</span></td><td id="pvc86" class="gray-out"><span>&#x1f476;</span></td><td id="pvc87" class="gray-out"><span>&#x1f476;</span></td><td id="pvc88" class="gray-out"><span>&#x1f476;</span></td><td id="pvc89" class="gray-out"><span>&#x1f476;</span></td></tr>
+          <tr id="pvr90"><td id="pvc90" class="gray-out"><span>&#x1f476;</span></td><td id="pvc91" class="gray-out"><span>&#x1f476;</span></td><td id="pvc92" class="gray-out"><span>&#x1f476;</span></td><td id="pvc93" class="gray-out"><span>&#x1f476;</span></td><td id="pvc94" class="gray-out"><span>&#x1f476;</span></td><td id="pvc95" class="gray-out"><span>&#x1f476;</span></td><td id="pvc96" class="gray-out"><span>&#x1f476;</span></td><td id="pvc97" class="gray-out"><span>&#x1f476;</span></td><td id="pvc98" class="gray-out"><span>&#x1f476;</span></td><td id="pvc99" class="gray-out"><span>&#x1f476;</span></td></tr>
+        </table>
+      </div>
+
       <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <div class="col-lg-12">
+          <h6><a name="help"></a>Help?</h6>
+          <p>This tool works in modern browsers on desktop computers. Fill out the details for your visualization, and then take a screenshot of the gray box using your computer's built in screenshot tool. Don't know how to take a screenshot? <a href="https://www.take-a-screenshot.org/">Check out this awesome screenshot instruction site!</a></p>
         </div>
       </div>
 
-      <hr>
+      <footer class="footer">
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+        This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+      </footer> <!-- / footer -->
 
-      <footer>
-        <p>&copy; Company 2017</p>
-      </footer>
     </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <a href="https://github.com/mattpavelle/percentagevisualizer/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
   </body>
 </html>
